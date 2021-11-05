@@ -6,14 +6,16 @@ public class Oscillator : MonoBehaviour
 {
     // Start is called before the first frame update   
     
-    Rigidbody2D rb2d;
+     Rigidbody2D rb2d;
 
-     float moveSpeed=0;
-     float leftAngle=-0.1f;
-     float rightAngle=0.1f;
-
-
-    bool movingClockwise;
+     private float moveSpeed=0;
+     private float leftAngle=-0.1f;
+     private float rightAngle=0.1f;
+     private float AddRangeRotation=0.01f;
+     private float MaxRangeForRotation=0.3f;
+     private float MaxSpeedForMove=55;
+     private bool movingClockwise;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -34,14 +36,14 @@ public class Oscillator : MonoBehaviour
     {
         if (transform.rotation.z > rightAngle)
         {
-            if(rightAngle<=0.3)
-              rightAngle+=0.09f;
+            if(rightAngle<=MaxRangeForRotation)
+              rightAngle+=AddRangeRotation;
             movingClockwise = false;
         }
         if (transform.rotation.z < leftAngle)
         {
-            if(leftAngle>=-0.3)
-              leftAngle+=-0.09f;
+            if(leftAngle>=-MaxRangeForRotation)
+              leftAngle+=-AddRangeRotation;
             movingClockwise = true;
         }
 
@@ -50,7 +52,7 @@ public class Oscillator : MonoBehaviour
     public void Move()
     {
         ChangeMoveDir();
-        if(moveSpeed<=55)
+        if(moveSpeed<=MaxSpeedForMove)
         {
             moveSpeed+=1;
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimeBubble : MonoBehaviour
 {
      Vector2 OrginalScale;
+     private float NunberToReduceScale=1.20f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,7 @@ public class AnimeBubble : MonoBehaviour
 
     IEnumerator ChangeAnimeBubble()
     {
-        Vector2 SmallScale = OrginalScale / 1.20f;
+        Vector2 SmallScale = OrginalScale / NunberToReduceScale;
 
         while(true)
         {
